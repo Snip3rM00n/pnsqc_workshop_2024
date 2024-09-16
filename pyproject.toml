@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pnsqc-workshop-2024"
+version = "0.0.1"
+description = "The Automagical Marvel"
+authors = ["Sophia McKeever"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+selenium = "^4.24.0"
+pytest = "^8.3.3"
+coverage = "^7.6.1"
+pytest-cov = "^5.0.0"
+selenium-driver-updater = "^6.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

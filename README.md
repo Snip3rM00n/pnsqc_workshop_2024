@@ -152,6 +152,9 @@ for (var i = 0; i < all.length; i++){
         }
     }
 }
+
+var rightAd = document.getElementById("RightSide_Advertisement");
+rightAd.remove();
 ```
 
 ### Selenium crashes when I try to reach an element that is on page
@@ -185,3 +188,7 @@ _**Note:** Compatible with all browsers._
 ```python
 self.driver.execute_script(script="window.scrollBy(0, x);") # Let x represent the number of pixels to scroll by.
 ```
+
+### Help, the website under test went blank
+
+This is a known issue and can happen if certain elements are cleared inadvertently.  Simply refresh the page to get all the content back.  In the future, avoid completely clearing out a field, rather add any kind of content for it to keep the page alive.

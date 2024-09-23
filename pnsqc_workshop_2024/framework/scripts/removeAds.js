@@ -1,10 +1,13 @@
 var all = document.getElementsByTagName("*");
 
-for (var i = 0; i < all.length; i++){
+for (var i = 0; i < all.length; i++) {
     element = all[i];
-    for (var j = 0; j < element.attributes.length; j++){
-        if (element.attributes[j].value.includes("Ad.")){
+    for (var j = 0; j < element.attributes.length; j++) {
+        if (element.attributes[j].value.includes("Ad.")) {
             element.remove();
         }
     }
 }
+
+var rightAd = document.getElementById("RightSide_Advertisement");
+rightAd.remove();

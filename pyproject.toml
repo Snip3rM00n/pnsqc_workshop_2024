@@ -6,7 +6,7 @@ authors = ["Sophia McKeever"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 selenium = "^4.24.0"
 pytest = "^8.3.3"
 coverage = "^7.6.1"

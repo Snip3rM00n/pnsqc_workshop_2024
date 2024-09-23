@@ -13,6 +13,10 @@ from pnsqc_workshop_2024.core.extensions.extended_web_driver import ChromeExtend
 
 
 class DriverHelper:
+    """
+    A collection of static helpers for getting Driver objects.
+    """
+
     supported_browsers = {
         # Google Chrome
         "chrome": {
@@ -66,21 +70,23 @@ class DriverHelper:
     @staticmethod
     def browser_supported(browser: str):
         """
+        Determines if a browser is supported by the workshop.
 
-        :param browser:
-        :return:
+        :param browser: The browser to check.
+        :return: A Boolean determining if the browser is supported or not.
         """
         return browser in DriverHelper.supported_browsers.keys()
 
     @staticmethod
     def get_extended_driver(browser: str, install: bool = True, update: bool = True, browser_args: List = None):
         """
+        Gets a Selenium WebDriver for the given browser with Find Element Extensions enabled.
 
-        :param browser:
-        :param install:
-        :param update:
-        :param browser_args:
-        :return:
+        :param browser: The name of the browser to get the driver for.
+        :param install: Whether to install the driver or not.
+        :param update: Whether to update the driver if it's already installed.
+        :param browser_args: Any launch arguments to pass to the browser as its started.
+        :return: A working extended webdriver object.
         """
         if not browser.startswith("extended_"):
             browser = f"extended_{browser.replace('extended', '').replace('_', '')}"
@@ -90,12 +96,13 @@ class DriverHelper:
     @staticmethod
     def get_driver(browser: str, install: bool = True, update: bool = True, browser_args: List = None):
         """
+        Gets a Selenium WebDriver for the given browser.
 
-        :param browser:
-        :param install:
-        :param update:
-        :param browser_args:
-        :return:
+        :param browser: The name of the browser to get the driver for.
+        :param install: Whether to install the driver or not.
+        :param update: Whether to update the driver if it's already installed.
+        :param browser_args: Any launch arguments to pass to the browser as its started.
+        :return: A working webdriver object.
         """
 
         if not DriverHelper.browser_supported(browser):
@@ -121,13 +128,13 @@ class DriverHelper:
     @staticmethod
     def _install_driver(browser_type: str, update: bool):
         """
+        Installs the web driver into the virtual environment's bin (POSIX) or Scripts (Windows) folder.
 
-        :param browser_type:
-        :param update:
-        :return:
+        :param browser_type: The name of the driver to install.
+        :param update: Whether the driver should be updated if it's already installed.
         """
         venv_dir = os.environ.get("VIRTUAL_ENV")
-        bin_name = "bin" if os.name.lower() == "posix" else "Scripts"  # TODO: Confirm Windows venv script folder
+        bin_name = "bin" if os.name.lower() == "posix" else "Scripts"
         bin_dir_path = os.path.join(venv_dir, bin_name)
 
         DriverUpdater.install(browser_type, path=bin_dir_path, upgrade=update)

@@ -16,6 +16,9 @@ from pnsqc_workshop_2024.core.bases.base_page import BasePage
 
 
 class PracticeForm(BasePage):
+    """
+    Website Under Test: https://demoqa.com/automation-practice-form
+    """
 
     @property
     def select_all(self):

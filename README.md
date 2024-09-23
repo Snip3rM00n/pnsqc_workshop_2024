@@ -41,6 +41,12 @@ During the course of this workshop you are expected to:
 
 To get started, follow along with these various sections.
 
+## The Website Under Test
+
+To perform this workshop, we'll be using the following website to build our framework: https://demoqa.com/automation-practice-form
+
+_**Note:** This website can have some questionable ads sometimes.  If they get too annoying, you can remove them with the instructions found in [the Troubleshooting section](#the-website-under-test-has-some-weird-ads)._
+
 ## Prerequisites
 
 Before beginning, make sure you meet the following prerequisites:

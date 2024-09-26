@@ -7,14 +7,15 @@ from tests.assets.validation_form import ValidationForm
 driver = None
 validation_page = None
 workshop_page = None
-preferred_browser = "chrome"
+preferred_browser = "chrome"  # Change "chrome" to your preferred browser if it's not Google Chrome.
+
 
 @pytest.fixture()
 def setup_dualing_pages(request):
     global driver, validation_page, workshop_page, preferred_browser
 
     if driver is None:
-        driver = DriverHelper.get_extended_driver(preferred_browser)
+        driver = DriverHelper.get_extended_driver(preferred_browser, install=True, update=True)
 
     if validation_page is None:
         validation_page = ValidationForm(driver)
@@ -26,14 +27,14 @@ def setup_dualing_pages(request):
     request.cls.workshop_page = workshop_page
     request.cls.driver = driver
     yield
-    # driver.quit()
+
 
 @pytest.fixture()
 def setup_single_page(request):
     global driver, workshop_page, preferred_browser
 
     if driver is None:
-        driver = DriverHelper.get_extended_driver(preferred_browser)
+        driver = DriverHelper.get_extended_driver(preferred_browser, install=True, update=True)
 
     if workshop_page is None:
         workshop_page = PracticeForm(driver)
@@ -41,4 +42,3 @@ def setup_single_page(request):
     request.cls.workshop_page = workshop_page
     request.cls.driver = driver
     yield
-#     driver.quit()

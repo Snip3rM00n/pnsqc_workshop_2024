@@ -32,6 +32,7 @@ Welcome to The Automagical Marvel, a 2024 Pacific Northwest Software Quality Con
       * [Through Selenium's API](#through-seleniums-api)
       * [Through Javascript Injection:](#through-javascript-injection)
     * [Help, the website under test went blank](#help-the-website-under-test-went-blank)
+    * [A modal appeared while running one of the test commands and broke the tests](#a-modal-appeared-while-running-one-of-the-test-commands-and-broke-the-tests)
 <!-- TOC -->
 
 # Introduction
@@ -98,6 +99,8 @@ Before beginning, make sure you meet the following prerequisites:
     - If you don't have it installed, you can still install the requirements via `pip install`
   - Have some form of [GNU Make](https://www.gnu.org/software/make/) installed
     - This will make it easier to install the requirements.
+  - Install the correct Selenium WebDriver for your browser into your Virtual Environment's binary folder.
+    - A module used by this project can also do this but sometimes the module is flakey.  See [Driver does not install with `DriverHelper.get_driver("browser", install=True, update=True)`](#driver-does-not-install-with-driverhelperget_driverbrowser-installtrue-updatetrue)
 
 ## Creating a Virtual Environment
 
@@ -182,6 +185,13 @@ Although this workshop utilizes a package that _should_ install the driver, the 
 - Microsoft Edge (Chromium): https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
 - Safari: No need to install, it's supplied by macOS natively in `/System/Cryptexes/App/usr/bin/safaridriver`
   - You can confirm this in macOS by running the `which safaridriver` command.
+
+Once downloaded, extract the contents and find the driver's executable file.  Copy or move the executable file to:
+* POSIX (macOS, Linux, etc): [`./venv/bin`](./venv/bin)
+  * _**Important Note for Safari Users:** If you're using Safari, leave `SafariDriver`'s executable where it currently lives.  It's happy there. (<u>And things **will break** if it moves</u>)_
+* Windows: [`.\venv\Scripts`](.\venv\Scripts)
+
+Once this is done, modify [`./tests/fixtures.py`](./tests/fixtures.py) and remove `install=True, update=True` from the `DriverHelper.get_extended_driver()` calls on lines 18 and 37 respectively.
 
 ### I get a BrowserNotSupportedError when using X browser that's not Chrome, Firefox, Edge, or Safari
 

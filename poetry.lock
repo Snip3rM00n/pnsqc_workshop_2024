@@ -503,12 +503,13 @@ websocket-client = ">=1.8,<2.0"
 
 [[package]]
 name = "selenium-driver-updater"
-version = "6.0.3"
+version = "7.0.0"
 description = "Download or update your Selenium driver binaries and their browsers automatically with this package"
 optional = false
 python-versions = "*"
 files = [
-    {file = "selenium_driver_updater-6.0.3.tar.gz", hash = "sha256:b2cd3ccf4aadb8170ba8113c878693e12883fb9cd56ca891e3646ff2683517e5"},
+    {file = "selenium_driver_updater-7.0.0-py3-none-any.whl", hash = "sha256:610e9e7df082cc0862e94a94b3adb2a12a9237f34857398d017a60d121b71cb3"},
+    {file = "selenium_driver_updater-7.0.0.tar.gz", hash = "sha256:bc487b8f1e02f5e6e8a0db8d5ed9ffe007fd7d1b2814bc4726c3cfee1197918e"},
 ]
 
 [package.dependencies]
@@ -659,4 +660,4 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "afb93ccc2723b9032fea5cc3d164b65fd90e9dd81c6ebfd16d72bbb2568944ff"
+content-hash = "df18901f64c76f6c4fbd0195984f4be97aaf1f757549c8e1d18495850fa63efb"

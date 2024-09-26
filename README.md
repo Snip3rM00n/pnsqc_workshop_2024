@@ -4,7 +4,37 @@
 
 Welcome to The Automagical Marvel, a 2024 Pacific Northwest Software Quality Conference (PNSQC) workshop.
 
-## Introduction
+## Table of Contents
+<!-- TOC -->
+* [The Automagical Marvel - A Hybridization of the Page Object Model and Logical Functions](#the-automagical-marvel---a-hybridization-of-the-page-object-model-and-logical-functions)
+  * [Table of Contents](#table-of-contents)
+* [Introduction](#introduction)
+  * [Goals of the Workshop](#goals-of-the-workshop)
+  * [Expectations of You](#expectations-of-you)
+* [Getting Started](#getting-started)
+  * [The Website Under Test](#the-website-under-test)
+  * [Prerequisites](#prerequisites)
+  * [Creating a Virtual Environment](#creating-a-virtual-environment)
+    * [POSIX Environments (Linux, macOS, Unix, etc)](#posix-environments-linux-macos-unix-etc)
+    * [Windows Environments](#windows-environments)
+      * [Powershell](#powershell)
+      * [CommandLine](#commandline)
+  * [Installing the Requirements](#installing-the-requirements)
+    * [Install via Poetry](#install-via-poetry)
+    * [Install via PIP](#install-via-pip)
+  * [Building in the Workshop](#building-in-the-workshop)
+  * [Checking Your Work](#checking-your-work)
+* [Troubleshooting](#troubleshooting)
+    * [Driver does not install with `DriverHelper.get_driver("browser", install=True, update=True)`](#driver-does-not-install-with-driverhelperget_driverbrowser-installtrue-updatetrue)
+    * [I get a BrowserNotSupportedError when using X browser that's not Chrome, Firefox, Edge, or Safari](#i-get-a-browsernotsupportederror-when-using-x-browser-thats-not-chrome-firefox-edge-or-safari)
+    * [The website under test has some weird ads](#the-website-under-test-has-some-weird-ads)
+    * [Selenium crashes when I try to reach an element that is on page](#selenium-crashes-when-i-try-to-reach-an-element-that-is-on-page)
+      * [Through Selenium's API](#through-seleniums-api)
+      * [Through Javascript Injection:](#through-javascript-injection)
+    * [Help, the website under test went blank](#help-the-website-under-test-went-blank)
+<!-- TOC -->
+
+# Introduction
 
 This introduces the concept of the hybridization of Page Object Model with a Logical Function Model, shortened to Hybrid POM/LFM, which allows for the usage of UI elements through standard data types (such as `String`, `Integer`, `DateTime`, `Boolean`, etc.).
 
@@ -120,6 +150,26 @@ If you have GNU Make installed, simply run: `make install-deps-pip`
 
 If you do not have GNU Make, you can install by running `python3 -m pip install -r requirements.txt`
 
+## Building in the Workshop
+
+Most work in this workshop will be centered around building out the `PracticeForm` class in [./pnsqc_workshop_2024/framework/pages/practice_form.py](./pnsqc_workshop_2024/framework/pages/practice_form.py).  In this file you will find some boilerplate code along with some `#region` tags that outline a section for each element and its requirements.  Follow the requirements defined in the region for each element and it's wrapper.
+
+## Checking Your Work
+
+To check your work, simply run the tests using one of the following commands.
+
+If you have GNU Make, simply run one of these commands:
+* `make test-workshop` - Test's specifically your modifications to the page by setting and getting the properties.  This will have false positives as, if you do not define the property, it gets set in the class due to Python's meta programming.
+* `make test-io` - Validates your changes against a fully functional version of the page built by the Workshop Facilitator.  This is a comprehensive test as it will use your version of the page to fill out the form and use the facilitators version to validate the inputs.
+* `make test-all` - Runs both sets of tests.
+
+If you do not have GNU Make, simply run one of these commands:
+* `python3 -m pytest ./tests/test_workshop.py` - Test's specifically your modifications to the page by setting and getting the properties.  This will have false positives as, if you do not define the property, it gets set in the class due to Python's meta programming.
+* `python3 -m pytest ./tests/test_io.py` - Validates your changes against a fully functional version of the page built by the Workshop Facilitator.  This is a comprehensive test as it will use your version of the page to fill out the form and use the facilitators version to validate the inputs.
+* `python3 -m pytest ./tests/` - Runs both sets of tests.
+
+Similarly, if you want to test things on the fly you can either create a throw-away scratch file or have a version of the [Python REPL](https://python.land/introduction-to-python/the-repl) open and import the practice form to test your changes interactively.
+
 # Troubleshooting
 
 In the case an issue arises, here are some troubleshooting steps to try for various scenarios.
@@ -192,3 +242,7 @@ self.driver.execute_script(script="window.scrollBy(0, x);") # Let x represent th
 ### Help, the website under test went blank
 
 This is a known issue and can happen if certain elements are cleared inadvertently.  Simply refresh the page to get all the content back.  In the future, avoid completely clearing out a field, rather add any kind of content for it to keep the page alive.
+
+### A modal appeared while running one of the test commands and broke the tests
+
+This occasionally happens on this page under test because it has elements overlap each other that can also just disappear without warning (known issue).  Try re-running the tests.

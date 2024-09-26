@@ -2,4 +2,4 @@ coverage>=7.6.1
 pytest>=8.3.3
 pytest-cov>=5.0.0
 selenium>=4.24.0
-selenium_driver_updater>=6.0.3
+selenium_driver_updater>=7.0.0

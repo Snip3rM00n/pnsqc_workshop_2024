@@ -43,7 +43,7 @@ class PracticeForm(BasePage):
 
     def _remove_ads(self):
         current_dir = os.path.dirname(__file__)
-        script_file = os.path.join(current_dir, "scripts", "removeAds.js")
+        script_file = os.path.join(current_dir, "..", "scripts", "removeAds.js")
 
         with open(script_file, "r") as reader:
             script = reader.read()

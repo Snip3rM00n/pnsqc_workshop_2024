@@ -13,7 +13,7 @@ class BasePage:
         self.driver = driver
 
         if navigate_to:
-            self.nagivate_to()
+            self.navigate_to()
             GeneralHelpers.wait_for(self.page_to_load)
 
     @property
@@ -28,7 +28,7 @@ class BasePage:
     def url(self):
         return f"{self.base_uri}/{self.relative_uri}"
 
-    def nagivate_to(self):
+    def navigate_to(self):
         self.pre_navigation_actions()
         self.driver.get(self.url)
         self.post_navigation_actions()
